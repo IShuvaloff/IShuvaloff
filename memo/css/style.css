@@ -1,0 +1,110 @@
+@import url(./normalize.css);
+@import url(./reset.css);
+@import url(./backgrounds.css);
+
+.display-hidden {
+  display: none;
+  /* visibility: hidden; */
+}
+.text-error {
+  color: red;
+}
+.text-success {
+  color: green;
+}
+
+.game__caption {
+  border-bottom: 2px solid black;
+  font-size: 56px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.game__info {
+  margin-bottom: 10px;
+}
+.game__time--left {
+  font-size: 25px;
+  text-align: right;
+}
+.game__player--active {
+  font-size: 25px;
+  text-align: left;
+}
+
+.game__btn--restart {
+  /* ! выровнять кнопку посредине страницы! */
+  border: none;
+  border-radius: 3px;
+  background-color: cornflowerblue;
+  margin-bottom: 20px;
+  padding: 10px 45px;
+  font-size: 25px;
+  color: white;
+  transition: transform 0.1s ease-in-out, opacity 0.1s ease-in-out;
+}
+.game__btn--restart:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+.game__btn--restart:focus {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+.game__btn--restart:active {
+  transform: scale(1);
+}
+
+.game__card--wrapper {
+  perspective: 600px;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+.game__card--wrapper:hover {
+  transform: scale(1.02);
+}
+.game__card--wrapper:focus .game__card .game__card--back {
+  opacity: 0.8;
+}
+.game__card--wrapper:active {
+  transform: scale(0.98);
+}
+
+.game__card {
+  position: relative;
+  margin-bottom: 20px;
+  height: 150px;
+  width: 200px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.496);
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+.game__card.is-flipped {
+  box-shadow: -5px 5px 15px #000;
+  transform: rotateY(180deg);
+}
+.game__card--front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: bisque;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.game__card--back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(179, 176, 176);
+  width: 100%;
+  height: 100%;
+  font-size: 46px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: rotateY(180deg);
+}

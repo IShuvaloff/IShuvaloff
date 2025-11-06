@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Отправка заявки с сайта</title>
+  
+  <!-- <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css"> -->
+  <!-- <link rel="stylesheet" href="css/reset.css"> УЖЕ НЕ НУЖНО, ЕСТЬ СВОИ НАРАБОТКИ В STYLES -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+  <div class="wrapper">
+    <div class="form">
+      <!-- ! заглушка, чтобы валидатор не кричал, т.к. отправлять форму будем с помощью JS -->
+      <form action="#" id="form" class="form__body">
+        <h1 class="form__title">Отправка данных на почту</h1>
+
+        <!-- ? текстовое поле ИМЯ -->
+        <div class="form__item">
+          <label for="formName" title="Обязательно к заполнению" class="form__label">Имя<span class="hint">*</span>:</label>
+          <input type="text" id="formName" name="name" class="form__input _req"> <!-- required -->
+        </div>
+
+        <!-- ? текстовое поле EMAIL -->
+        <div class="form__item">
+          <label for="formEmail" title="Обязательно к заполнению" class="form__label">Email<span class="hint">*</span>:</label>
+          <input type="email" id="formEmail" name="email" class="form__input _req _email"> <!-- required -->
+        </div>
+
+        <!-- ? радиокнопки РУКА -->
+        <div class="form__item">
+          <!-- ! label не привязываем, т.к. элементов на выбор несколько -->
+          <label class="form__label">Левша или правша?</label>
+          <div class="options" id="formOptions">
+            <!-- правша -->
+            <div class="options__item">
+              <input type="radio" checked id="formRightHanded" value="right" name="hand" class="options__input">
+              <label for="formRightHanded" class="options__label"><span>Правша</span></label>
+            </div>
+            <!-- левша -->
+            <div class="options__item">
+              <input type="radio" id="formLeftHanded" value="left" name="hand" class="options__input">
+              <label for="formLeftHanded" class="options__label"<span>Левша</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ? мемо СООБЩЕНИЯ-->
+        <div class="form__item">
+          <label for="formMessage" class="form__label">Сообщение:</label>
+          <textarea name="message" id="formMessage" class="form__input"></textarea>
+        </div>
+
+        <!-- ? комбобокс ВОЗРАСТА-->
+        <div class="form__item">
+          <label for="formAge" class="form__label">Возраст:</label>
+          <select id="formAge" name="age" class="select">
+            <option value="от 18 до 25" selected>Молодой</option>
+            <option value="от 25 до 45">Старый</option>
+            <option value="от 45">Супер стар</option>
+          </select>
+        </div>
+
+        <!-- ? выбор файла ФОТО -->
+        <div class="form__item">
+          <!-- ! label не привязываем, т.к. кнопка меняет цвет при наведении! -->
+          <label class="form__label">Прикрепить фото</label> 
+          <div class="file">
+            <div class="file__item">
+              <!-- выбор файла с автовыбором нужных форматов (НЕ ВАЛИДАЦИЯ!) -->
+              <input id="formImage" accept=".jpg, .png, .gif" type="file" name="image" class="file__input">
+              <!-- бутафорная кнопка -->
+              <div class="file__button">Выбрать</div>
+            </div>
+            <!-- предпросмотр выбранного фото -->
+            <div class="file__preview" id="formPreview"></div>
+          </div>
+        </div>
+
+        <!-- ? чекбокс СОГЛАСИЕ С ОБРАБОТКОЙ ПЕРСОНАЛЬНЫХ ДАННЫХ -->
+        <div class="form__item">
+          <div class="checkbox">
+            <input id="formAgreement" checked type="checkbox" name="agreement" class="checkbox__input _req">
+            <!-- ! нужно привязать label, т.к. галка проставляется по щелчку на подписи -->
+            <label for="formAgreement" title="Требуется согласие" class="checkbox__label"><span>Я даю свое согласие на обработку персональных данных в соответствии с <a href="">Условиями</a><span class="hint">*</span></span></label>
+          </div>
+        </div>
+
+        <!-- ? кнопка ОТПРАВИТЬ -->
+        <button type="submit" class="form__button">Отправить</button> 
+      </form>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+  
+</body>
+</html>

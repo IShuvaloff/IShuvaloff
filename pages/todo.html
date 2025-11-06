@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JSApp - TODO-лист</title>
+        <link rel="stylesheet" href="/css/normalize.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/todo.css" />
+        <script src="/scripts/app.js" type="module"></script>
+        <script src="/scripts/todo.js" type="module"></script>
+    </head>
+
+    <body>
+        <template id="header"></template>
+        <main>
+            <div class="container main">
+                <h1>Планы на неделю</h1>
+
+                <div class="todo">
+                    <div class="todo__header">
+                        <div class="todo__header-nav">
+                            <div
+                                id="week-prev-btn"
+                                class="todo__header-week-btn todo__header-week-btn--reverse"
+                                role="button"
+                                tabindex="0"
+                            >
+                                <svg viewBox="0 0 128 128" fill="currentColor">
+                                    <path
+                                        d="M64,0a64,64,0,1,0,64,64A64.07,64.07,0,0,0,64,0Zm0,122a58,58,0,1,1,58-58A58.07,58.07,0,0,1,64,122Z"
+                                    />
+                                    <path
+                                        d="M58.12,35.88a3,3,0,0,0-4.24,4.24L77.76,64,53.88,87.88a3,3,0,1,0,4.24,4.24l26-26a3,3,0,0,0,0-4.24Z"
+                                    />
+                                </svg>
+                            </div>
+                            <p>
+                                <span>Неделя </span>
+                                <span id="dates-range"></span>
+                            </p>
+                            <div
+                                id="week-next-btn"
+                                class="todo__header-week-btn"
+                                role="button"
+                                tabindex="0"
+                            >
+                                <svg viewBox="0 0 128 128" fill="currentColor">
+                                    <path
+                                        d="M64,0a64,64,0,1,0,64,64A64.07,64.07,0,0,0,64,0Zm0,122a58,58,0,1,1,58-58A58.07,58.07,0,0,1,64,122Z"
+                                    />
+                                    <path
+                                        d="M58.12,35.88a3,3,0,0,0-4.24,4.24L77.76,64,53.88,87.88a3,3,0,1,0,4.24,4.24l26-26a3,3,0,0,0,0-4.24Z"
+                                    />
+                                </svg>
+                            </div>
+                        </div>
+                        <button id="new-task-btn" type="button">
+                            Новая задача
+                        </button>
+                    </div>
+
+                    <div class="todo__week">
+                        <div class="todo__week-header">
+                            <div class="todo__row todo__row--header">
+                                <div>
+                                    <p>Пн</p>
+                                    <p id="0d">25.08</p>
+                                </div>
+                                <div>
+                                    <p>Вт</p>
+                                    <p id="1d"></p>
+                                </div>
+                                <div>
+                                    <p>Ср</p>
+                                    <p id="2d"></p>
+                                </div>
+                                <div>
+                                    <p>Чт</p>
+                                    <p id="3d"></p>
+                                </div>
+                                <div>
+                                    <p>Пт</p>
+                                    <p id="4d"></p>
+                                </div>
+                                <div>
+                                    <p>Сб</p>
+                                    <p id="5d"></p>
+                                </div>
+                                <div>
+                                    <p>Вс</p>
+                                    <p id="6d"></p>
+                                </div>
+                                <div class="todo__task">Задача</div>
+                            </div>
+                        </div>
+
+                        <div class="todo__week-body"></div>
+                    </div>
+                </div>
+            </div>
+
+            <dialog id="task-dlg">
+                <div class="dialog__wrapper">
+                    <form id="task-form" class="task-dlg__form">
+                        <h2 id="task-title">Новая задача</h2>
+                        <label>
+                            Название:
+                            <input type="text" id="task-name" required />
+                        </label>
+                        <label>
+                            Описание:
+                            <textarea id="task-descr" rows="4"></textarea>
+                        </label>
+                        <fieldset id="task-days">
+                            <legend>Дни недели</legend>
+                            <label
+                                ><input type="checkbox" name="days" value="1" />
+                                Пн</label
+                            >
+                            <label
+                                ><input type="checkbox" name="days" value="2" />
+                                Вт</label
+                            >
+                            <label
+                                ><input type="checkbox" name="days" value="3" />
+                                Ср</label
+                            >
+                            <label
+                                ><input type="checkbox" name="days" value="4" />
+                                Чт</label
+                            >
+                            <label
+                                ><input type="checkbox" name="days" value="5" />
+                                Пт</label
+                            >
+                            <label
+                                ><input type="checkbox" name="days" value="6" />
+                                Сб</label
+                            >
+                            <label
+                                ><input type="checkbox" name="days" value="0" />
+                                Вс</label
+                            >
+                        </fieldset>
+                        <div class="dialog__btns">
+                            <button type="submit" class="task-dlg__btn">
+                                OK
+                            </button>
+                            <button
+                                type="button"
+                                id="task-cancel"
+                                class="task-dlg__btn"
+                            >
+                                Отмена
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </dialog>
+
+            <!-- Диалог для подтверждения закрытия -->
+            <dialog id="close-dlg" class="dialog-confirm">
+                <div class="dialog__wrapper">
+                    <p>
+                        Уверены, что хотите закрыть? Введённые данные будут
+                        потеряны.
+                    </p>
+                    <div class="dialog__btns">
+                        <button
+                            id="close-confirm"
+                            class="dialog-confirm__btn"
+                            type="button"
+                        >
+                            Да
+                        </button>
+                        <button
+                            id="close-cancel"
+                            class="dialog-confirm__btn dialog-confirm__btn--cancel"
+                            type="button"
+                        >
+                            Отмена
+                        </button>
+                    </div>
+                </div>
+            </dialog>
+
+            <!-- Диалог для подтверждения удаления -->
+            <dialog id="delete-dlg" class="dialog-confirm">
+                <div class="dialog__wrapper">
+                    <p>Удалить задачу?</p>
+                    <div class="dialog__btns">
+                        <button
+                            id="delete-confirm"
+                            class="dialog-confirm__btn"
+                            type="button"
+                        >
+                            Да
+                        </button>
+                        <button
+                            id="delete-cancel"
+                            class="dialog-confirm__btn dialog-confirm__btn--cancel"
+                            type="button"
+                        >
+                            Отмена
+                        </button>
+                    </div>
+                </div>
+            </dialog>
+        </main>
+        <template id="footer"></template>
+    </body>
+</html>

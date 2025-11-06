@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JSApp - Морской бой</title>
+        <link rel="stylesheet" href="/css/normalize.css" />
+        <link rel="stylesheet" href="/css/main.css" />
+        <link rel="stylesheet" href="/css/battleship.css" />
+        <script src="/scripts/app.js" type="module"></script>
+        <script src="/scripts/battleship.js" type="module"></script>
+    </head>
+
+    <body>
+        <template id="header"></template>
+        <main>
+            <div class="container main">
+                <h1>Морской бой</h1>
+                <p>Готовься, сегодня не твой день</p>
+
+                <div class="game">
+                    <div id="user-sea" class="sea"></div>
+                    <div id="enemy-sea" class="sea"></div>
+                </div>
+            </div>
+        </main>
+        <template id="footer"></template>
+    </body>
+</html>

@@ -1,0 +1,210 @@
+.todo__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+.todo__header-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.todo__header-week-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    color: #5c6e79;
+    cursor: pointer;
+}
+.todo__header-week-btn--reverse {
+    transform: rotate(180deg);
+}
+.todo__week .todo__row:not(:last-child) {
+    border-bottom: none;
+}
+
+.todo__row {
+    display: grid;
+    grid-template-columns: repeat(7, 40px) 1fr;
+    border: 1px solid darkgray;
+    text-align: center;
+    height: 40px;
+    width: 100%;
+}
+.todo__row > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid darkgray;
+}
+.todo__row > div:last-child {
+    justify-content: flex-start;
+    padding: 0 10px;
+    border-right: none;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.todo__row--header {
+    background-color: lightgray;
+}
+.todo__row--header > div {
+    flex-direction: column;
+    row-gap: 2px;
+}
+.todo__row--header > div.todo__task {
+    flex-direction: row;
+    font-weight: bold;
+}
+.todo__row--header > div > p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.todo__row--header > div > p:last-child {
+    opacity: 0.6;
+    font-size: 0.7rem;
+    font-weight: normal;
+}
+
+.todo__task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-right: none;
+    overflow: hidden;
+}
+.todo__task-text {
+    display: inline-block;
+    max-width: 100%;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+.todo__task-delete {
+    margin-left: auto;
+    cursor: pointer;
+}
+.todo__day {
+    --planned: #39444a; /* цвет */
+    --cancelled: red;
+    --moved: orange;
+    --done: green;
+    --w: 2px; /* толщина линии и рамки */
+    font-weight: 200;
+    font-size: 1.5rem;
+    color: var(--planned);
+    cursor: pointer;
+    transition: all 0.125s ease-in-out;
+}
+.todo__day::after,
+.todo__day::before {
+    transition: all 0.125s ease-in-out;
+}
+.todo__day:hover {
+    background-color: lightgray;
+}
+.todo__day--today {
+    background-color: #e7e9ea;
+}
+
+.todo__day--planned {
+    /* box-shadow: inset 0 0 5px #39444a; */
+    border: var(--w) solid var(--planned) !important;
+}
+
+.todo__day--cancelled {
+    position: relative;
+    border: var(--w) solid var(--cancelled) !important;
+    box-sizing: border-box;
+}
+.todo__day--cancelled::before,
+.todo__day--cancelled::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%; /* calc(100% * sqrt(2));*/
+    height: var(--w);
+    background: var(--cancelled);
+    transform-origin: center;
+    /* центрируем полосу в блоке */
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+.todo__day--cancelled::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.todo__day--moved {
+    position: relative;
+    border: var(--w) solid var(--moved) !important;
+    box-sizing: border-box;
+}
+.todo__day--moved::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    right: 5px;
+    border-top-right-radius: var(--w);
+    border-bottom-right-radius: var(--w);
+    top: 50%;
+    background: var(--moved);
+    height: var(--w);
+    transform: translateY(-50%);
+}
+/* вторая часть уголка */
+.todo__day--moved::after {
+    content: "";
+    position: absolute;
+    right: 7px;
+    top: 50%;
+    width: 30%;
+    height: 30%;
+    border-top: var(--w) solid var(--moved);
+    border-right: var(--w) solid var(--moved);
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.todo__day--done {
+    position: relative;
+    border: var(--w) solid var(--done) !important;
+}
+.todo__day--done::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    background: repeating-linear-gradient(
+        -45deg,
+        /* угол диагонали */ var(--done) 0,
+        /* начало линии */ var(--done) var(--w),
+        /* толщина линии */ transparent var(--w),
+        /* сразу после линии — прозрачность */ transparent calc(var(--w) * 2.2)
+    );
+}
+
+/* диалоги */
+.task-dlg__wrapper {
+    display: flex;
+    justify-content: stretch;
+    padding: 20px;
+}
+.task-dlg__form {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+.task-dlg__btn {
+    width: 100px;
+}
+.close-dlg {
+    max-width: 90%;
+}
+
+#dates-range {
+    color: red;
+}
