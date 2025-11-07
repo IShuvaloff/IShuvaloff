@@ -1,5 +1,3 @@
-@import url(./normalize.css);
-@import url(./reset.css);
 @import url(./backgrounds.css);
 
 .display-hidden {
@@ -13,22 +11,33 @@
   color: green;
 }
 
+.memo {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  row-gap: 18px;
+  padding: 20px 0;
+}
+
 .game__caption {
-  border-bottom: 2px solid black;
   font-size: 56px;
   font-weight: bold;
   text-align: center;
 }
 
 .game__info {
-  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
 }
 .game__time--left {
-  font-size: 25px;
+  font-size: 20px;
   text-align: right;
 }
 .game__player--active {
-  font-size: 25px;
+  font-size: 20px;
   text-align: left;
 }
 
@@ -36,12 +45,7 @@
   /* ! выровнять кнопку посредине страницы! */
   border: none;
   border-radius: 3px;
-  background-color: cornflowerblue;
-  margin-bottom: 20px;
   padding: 10px 45px;
-  font-size: 25px;
-  color: white;
-  transition: transform 0.1s ease-in-out, opacity 0.1s ease-in-out;
 }
 .game__btn--restart:hover {
   opacity: 0.8;
@@ -56,8 +60,13 @@
 }
 
 .game__card--wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   perspective: 600px;
-  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  transition:
+    transform 0.2s ease-in-out,
+    opacity 0.2s ease-in-out;
 }
 .game__card--wrapper:hover {
   transform: scale(1.02);
@@ -69,15 +78,27 @@
   transform: scale(0.98);
 }
 
+.game__cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 0 auto;
+  max-width: 1350px;
+  width: 100%;
+}
+
 .game__card {
   position: relative;
-  margin-bottom: 20px;
   height: 150px;
   width: 200px;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.496);
   cursor: pointer;
   transform-style: preserve-3d;
-  transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+  transition:
+    transform 0.4s ease-in-out,
+    box-shadow 0.4s ease-in-out;
 }
 .game__card.is-flipped {
   box-shadow: -5px 5px 15px #000;
@@ -100,10 +121,14 @@
   position: absolute;
   top: 0;
   left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: rgb(179, 176, 176);
   width: 100%;
   height: 100%;
   font-size: 46px;
+  font-weight: 200 !important;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transform: rotateY(180deg);

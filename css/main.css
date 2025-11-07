@@ -10,10 +10,17 @@ body {
 .container {
     width: 80%;
     margin: 0 auto;
+    @media (max-width: 640px) {
+        width: 90%;
+    }
+
+    &.container--small {
+        max-width: 1150px;
+    }
 }
 
 header {
-    background: #35424a;
+    background: #42548b;
 }
 header .header {
     display: flex;
@@ -49,7 +56,7 @@ main {
 
 footer .footer {
     margin-top: auto;
-    background: #35424a;
+    background: #42548b;
     color: #ffffff;
     text-align: center;
     padding: 10px 0;
@@ -60,34 +67,36 @@ footer .footer {
 
 button {
     padding: 8px 13px;
-    background-color: #5c6e79;
-    border: 2px solid #5c6e79;
+    background-color: #42548b;
+    border: 2px solid #42548b;
     border-radius: 5px;
     color: white;
     cursor: pointer;
-    transition: background-color 0.125s ease-in-out,
-        border-color 0.125s ease-in-out, color 0.125s ease-in-out;
+    transition:
+        background-color 0.125s ease-in-out,
+        border-color 0.125s ease-in-out,
+        color 0.125s ease-in-out;
 }
 button:focus,
 input:focus,
 textarea:focus,
 select:focus {
-    outline: 1px dotted #39444a;
+    outline: 1px dotted #2f3c62;
     outline-offset: 2px;
 }
 button:hover {
-    background-color: #4a5a65;
+    background-color: #5c77c8;
 }
 button:active {
-    background-color: #39444a;
+    background-color: #2f3c62;
 }
 div[role="button"]:focus {
-    outline: 1px dotted #39444a;
+    outline: 1px dotted #2f3c62;
     outline-offset: 2px;
 }
 button:disabled {
-    background-color: #5c6e79;
-    border: 2px solid #5c6e79;
+    background-color: #2f3c62;
+    border: 2px solid #2f3c62;
 }
 
 /* div[role="button"][disabled] */
@@ -127,7 +136,7 @@ dialog.dialog-confirm .dialog-confirm__btn--cancel {
     color: #333;
 }
 dialog.dialog-confirm .dialog-confirm__btn--cancel:hover {
-    background-color: #5c6e79;
+    background-color: #42548b;
     color: white;
 }
 

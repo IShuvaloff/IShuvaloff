@@ -1,5 +1,5 @@
 (() => {
-  document.addEventListener('DOMContentLoaded', () => {
-    startGame(20, ['Илья', 'Дима', 'Оля'], 180);
-  });
+    document.addEventListener("DOMContentLoaded", () => {
+        startGame(24, ["Игрок"], 180);
+    });
 })();
