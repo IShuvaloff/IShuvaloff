@@ -1,5 +1,11 @@
+.todo {
+    width: 100%;
+    overflow: auto;
+}
+
 .todo__header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     margin: 10px 0;
@@ -22,6 +28,10 @@
 .todo__header-week-btn--reverse {
     transform: rotate(180deg);
 }
+.todo__week {
+    width: 100%;
+    min-width: 600px;
+}
 .todo__week .todo__row:not(:last-child) {
     border-bottom: none;
 }
@@ -32,7 +42,7 @@
     border: 1px solid darkgray;
     text-align: center;
     height: 40px;
-    width: 100%;
+    width: calc(100% - 3px);
 }
 .todo__row > div {
     display: flex;
