@@ -1,0 +1,11 @@
+Options -Indexes
+
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType application/javascript "access plus 7 days"
+ExpiresByType text/javascript "access plus 7 days"
+ExpiresByType image/jpg "access plus 7 days"
+ExpiresByType image/png "access plus 7 days"
+ExpiresByType image/webp "access plus 7 days"
+</IfModule>
+#ExpiresByType text/css "access plus 5 days"
