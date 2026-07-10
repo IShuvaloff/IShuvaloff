@@ -1,25 +1,808 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <title>Шувалов Илья | Senior Frontend Engineer</title>
+        <meta name="description" content="Резюме Ильи Шувалова — Senior Frontend Engineer, Vue 3 / Nuxt 3." />
+        <meta name="theme-color" content="#eef2f6" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap");
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Главная | ©IShuvaloff</title>
-    <link rel="stylesheet" href="/css/normalize.css" />
-    <link rel="stylesheet" href="/css/main.css" />
-    <script src="/scripts/app.js" type="module"></script>
-    <script src="/scripts/main.js" type="module"></script>
-</head>
+            :root {
+                --page-bg: #eef2f6;
+                --sheet-bg: #ffffff;
+                --sheet-border: rgba(18, 32, 44, 0.08);
+                --sidebar-top: #17324d;
+                --sidebar-bottom: #274d70;
+                --content-bg: #f7f9fb;
+                --text: #12202c;
+                --muted: #5f6f7c;
+                --accent: #4d84b8;
+            }
 
-<body>
-    <template id="header"></template>
-    <main>
-        <div class="container main">
-            <h1>Добро пожаловать</h1>
-            <p>Главная страница, здесь ничего нет и пока не предвидится</p>
+            * {
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                margin: 0;
+                min-height: 100%;
+                background:
+                    radial-gradient(circle at top left, rgba(104, 154, 196, 0.18), transparent 28%),
+                    radial-gradient(circle at 88% 18%, rgba(77, 132, 184, 0.08), transparent 22%),
+                    linear-gradient(180deg, #eef2f6 0%, #e6ecf2 100%);
+                color: var(--text);
+                font-family: "Manrope", "Segoe UI", Arial, Helvetica, sans-serif;
+            }
+
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+
+            ul {
+                margin: 0.35rem 0 0.7rem;
+                padding-left: 1.15rem;
+            }
+
+            li {
+                margin: 0.25rem 0;
+            }
+
+            .resume-shell {
+                padding: 18px 12px 24px;
+            }
+
+            .resume {
+                max-width: 1120px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: 315px minmax(0, 1fr);
+                align-items: stretch;
+                overflow: hidden;
+                border-radius: 24px;
+                background: var(--sheet-bg);
+                border: 1px solid var(--sheet-border);
+                box-shadow: 0 22px 55px rgba(24, 39, 56, 0.12);
+            }
+
+            .sidebar {
+                padding: 24px 20px 26px;
+                background: linear-gradient(180deg, var(--sidebar-top) 0%, var(--sidebar-bottom) 100%);
+                color: #eef5fb;
+            }
+
+            .content {
+                padding: 24px 24px 26px;
+                background: var(--content-bg);
+            }
+
+            .stack {
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+            }
+
+            .panel {
+                width: 100%;
+            }
+
+            .section-title {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin: 0 0 12px;
+                padding: 11px 14px;
+                border-radius: 10px;
+                background: rgba(255, 255, 255, 0.96);
+                color: var(--text);
+                font-size: 0.93rem;
+                font-weight: 800;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                font-family: "Montserrat", "Segoe UI", Arial, Helvetica, sans-serif;
+                box-shadow: inset 0 0 0 1px rgba(12, 35, 50, 0.06);
+                width: 100%;
+                min-height: 52px;
+            }
+
+            .sidebar .section-title {
+                background: rgba(255, 255, 255, 0.94);
+            }
+
+            .section-title::before {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 28px;
+                height: 28px;
+                flex: 0 0 28px;
+                border-radius: 8px;
+                background: #0e1720;
+                color: #fff;
+                font-family: "Font Awesome 5 Free";
+                font-size: 13px;
+                font-weight: 900;
+                line-height: 1;
+                box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+                content: "";
+            }
+
+            .section-experience::before {
+                content: "\f0b1";
+            }
+
+            .section-education::before {
+                content: "\f19d";
+            }
+
+            .section-courses::before {
+                content: "\f15c";
+            }
+
+            .section-about::before {
+                content: "\f007";
+            }
+
+            .section-contacts::before {
+                content: "\f2b9";
+            }
+
+            .section-languages::before {
+                content: "\f1ab";
+            }
+
+            .section-skills::before {
+                content: "\f0eb";
+            }
+
+            .photo {
+                width: 110px;
+                height: 140px;
+                margin: 0 auto 16px;
+                border-radius: 14px;
+                overflow: hidden;
+                box-shadow: 0 14px 24px rgba(5, 15, 24, 0.22);
+                background: rgba(255, 255, 255, 0.14);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .photo img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center top;
+                display: block;
+            }
+
+            .name-block {
+                text-align: center;
+                margin: 0 0 8px;
+                padding: 0;
+            }
+
+            .name {
+                margin: 0;
+                font-size: 1.2rem;
+                line-height: 1.25;
+                font-weight: 800;
+                font-family: "Montserrat", "Segoe UI", Arial, Helvetica, sans-serif;
+                letter-spacing: 0;
+                text-transform: none;
+            }
+
+            .position {
+                margin-top: 8px;
+                margin-bottom: 16px;
+                font-size: 1rem;
+                line-height: 1.35;
+                font-weight: 600;
+                opacity: 0.92;
+                letter-spacing: 0;
+                text-transform: none;
+            }
+
+            .marker,
+            .meta-line,
+            .contact-line,
+            .level-line,
+            .skill-line {
+                line-height: 1.4;
+            }
+
+            .marker {
+                margin-top: 4px;
+                text-align: center;
+                opacity: 0.9;
+                font-size: 0.86rem;
+                font-weight: 500;
+            }
+
+            .marker .icon {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            .marker .icon::before,
+            .contact-item::before {
+                width: 14px;
+                height: 14px;
+                border-radius: 999px;
+                background: transparent;
+                color: #f6fbff;
+                font-family: "Font Awesome 5 Free";
+                font-size: 13px;
+                font-weight: 900;
+                line-height: 1;
+                flex: 0 0 14px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .marker.city .icon::before {
+                content: "\f041";
+            }
+
+            .marker.age .icon::before {
+                content: "\f129";
+            }
+
+            .contact-item.phone::before {
+                content: "\f095";
+            }
+
+            .contact-item.email::before {
+                content: "\f0e0";
+            }
+
+            .contact-item.telegram::before {
+                content: "\f3fe";
+                font-family: "Font Awesome 5 Brands";
+                font-weight: 400;
+            }
+
+            .contact-item.github::before {
+                content: "\f09b";
+                font-family: "Font Awesome 5 Brands";
+                font-weight: 400;
+            }
+
+            .contact-item.linkedin::before {
+                content: "\f08c";
+                font-family: "Font Awesome 5 Brands";
+                font-weight: 400;
+            }
+
+            .contacts-list,
+            .meta-list,
+            .skills-list,
+            .language-card,
+            .section-card {
+                width: 100%;
+            }
+
+            .contact-item,
+            .meta-item {
+                padding: 8px 0 8px 4px;
+                word-break: break-word;
+            }
+
+            .contact-item {
+                display: flex;
+                align-items: baseline;
+                gap: 8px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+                color: #eaf2f8;
+                font-size: 0.92rem;
+            }
+
+            .contact-item a {
+                color: #dbeaf6;
+                word-break: break-word;
+            }
+
+            .meta-list {
+                padding: 6px 0 0;
+            }
+
+            .meta-item {
+                margin-bottom: 10px;
+                font-size: 0.9rem;
+            }
+
+            .meta-item b,
+            .meta-item span {
+                display: block;
+            }
+
+            .meta-item b {
+                margin-bottom: 2px;
+                font-size: 0.96rem;
+                font-weight: 700;
+            }
+
+            .meta-item span {
+                font-size: 0.88rem;
+                font-weight: 500;
+            }
+
+            .language-card {
+                padding: 10px 12px 12px;
+                border-radius: 12px;
+                background: rgba(255, 255, 255, 0.08);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+            }
+
+            .language-name,
+            .level-label {
+                display: block;
+                font-size: 0.92rem;
+            }
+
+            .levels {
+                display: flex;
+                align-items: center;
+                gap: 7px;
+                margin: 8px 0;
+            }
+
+            .level-dot {
+                width: 11px;
+                height: 11px;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.22);
+            }
+
+            .level-dot.active {
+                background: #f6fbff;
+            }
+
+            .skill-line {
+                list-style: none;
+                position: relative;
+                padding-left: 1rem;
+                font-size: 0.92rem;
+                margin: 0;
+            }
+
+            .skills-list {
+                display: flex;
+                flex-direction: column;
+                gap: 9px;
+            }
+
+            .skill-line::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0.58rem;
+                width: 6px;
+                height: 6px;
+                border-radius: 999px;
+                background: #94bfe0;
+            }
+
+            .content .section-card {
+                padding: 16px 16px 8px;
+                border-radius: 16px;
+                background: #fff;
+                border: 1px solid rgba(18, 32, 44, 0.06);
+                box-shadow: 0 10px 24px rgba(24, 44, 61, 0.05);
+            }
+
+            .content .section-card + .section-card {
+                margin-top: 16px;
+            }
+
+            .date-row {
+                display: flex;
+                flex-wrap: nowrap;
+                align-items: baseline;
+                justify-content: space-between;
+                gap: 8px;
+                margin-bottom: 4px;
+            }
+
+            .date-row > .name-line {
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+
+            .date-row > .date-inline {
+                flex: 0 0 auto;
+                margin-left: auto;
+                text-align: right;
+            }
+
+            .date-row > b,
+            .date-row .org,
+            .date-row .name-line {
+                font-size: 0.97rem;
+                font-weight: 800;
+            }
+
+            .date-inline {
+                color: var(--muted);
+                font-weight: 600;
+                white-space: nowrap;
+            }
+
+            .role {
+                margin: 4px 0 10px;
+                font-style: italic;
+                color: #203040;
+            }
+
+            .body-copy {
+                font-size: 0.91rem;
+                color: #1d2a36;
+            }
+
+            .body-copy p {
+                margin: 0 0 0.55rem;
+            }
+
+            .body-copy li strong {
+                font-weight: 800;
+            }
+
+            .divider {
+                height: 1px;
+                margin: 16px 0;
+                background: rgba(18, 32, 44, 0.1);
+            }
+
+            .subtle-title {
+                margin-top: 0.55rem;
+            }
+
+            .content ul {
+                margin-top: 0.35rem;
+                margin-bottom: 0.55rem;
+            }
+
+            @media (max-width: 700px) {
+                .resume-shell {
+                    padding: 12px 8px 18px;
+                }
+
+                .resume {
+                    grid-template-columns: 1fr;
+                }
+
+                .sidebar,
+                .content {
+                    padding: 18px 16px 20px;
+                }
+            }
+
+            @media print {
+                html,
+                body {
+                    background: #fff;
+                }
+
+                .resume-shell {
+                    padding: 0;
+                }
+
+                .resume {
+                    max-width: none;
+                    box-shadow: none;
+                    border-radius: 0;
+                    border: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="resume-shell">
+            <main class="resume">
+                <aside class="sidebar">
+                    <div class="stack">
+                        <section class="panel">
+                            <div class="photo">
+                                <img src="assets/photo.jpg" alt="Фото Ильи Шувалова" />
+                            </div>
+                            <div class="name-block">
+                                <h1 class="name">Шувалов Илья</h1>
+                                <div class="position">Senior Frontend Engineer<br />(Vue.js / Nuxt.js)</div>
+                                <div class="marker city"><span class="icon">Чехов, м. Аннино</span></div>
+                                <div class="marker age"><span class="icon">Возраст: 38 лет</span></div>
+                            </div>
+                        </section>
+
+                        <section class="panel">
+                            <h2 class="section-title section-contacts">Контакты</h2>
+                            <div class="contacts-list">
+                                <a class="contact-item phone" href="tel:+79295415652">+7 929 541-56-52</a>
+                                <a class="contact-item email" href="mailto:i.a.shuvalov@gmail.com"
+                                    >i.a.shuvalov@gmail.com</a
+                                >
+                                <div class="contact-item telegram">
+                                    <a target="_blank" rel="noopener noreferrer" href="https://t.me/ishuvaloff"
+                                        >https://t.me/ishuvaloff</a
+                                    >
+                                </div>
+                                <div class="contact-item github">
+                                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/IShuvaloff"
+                                        >https://github.com/IShuvaloff</a
+                                    >
+                                </div>
+                                <div class="contact-item linkedin">
+                                    <a
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        href="https://www.linkedin.com/in/ishuvaloff/"
+                                        >https://www.linkedin.com/in/ishuvaloff/</a
+                                    >
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="panel">
+                            <div class="meta-list">
+                                <div class="meta-item"><b>Водительские права:</b><span>B, есть личное авто</span></div>
+                                <div class="meta-item"><b>Гражданство:</b><span>РФ</span></div>
+                                <div class="meta-item"><b>Семейное положение:</b><span>Женат, есть дети</span></div>
+                                <div class="meta-item">
+                                    <b>Занятость:</b><span>Полная занятость, удалённая работа</span
+                                    ><span>Переезд невозможен</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="panel">
+                            <h2 class="section-title section-languages">Языки</h2>
+                            <div class="language-card">
+                                <div class="language-name">Английский</div>
+                                <div class="levels" aria-label="English level B2">
+                                    <span class="level-dot active"></span>
+                                    <span class="level-dot active"></span>
+                                    <span class="level-dot active"></span>
+                                    <span class="level-dot"></span>
+                                    <span class="level-dot"></span>
+                                </div>
+                                <div class="level-label">B2 - Выше среднего</div>
+                            </div>
+                        </section>
+
+                        <section class="panel">
+                            <h2 class="section-title section-skills">Навыки</h2>
+                            <div class="skills-list">
+                                <div class="skill-line">Vue 3, Nuxt 3, TypeScript, Pinia, SPA / SSR Architecture</div>
+                                <div class="skill-line">Tailwind CSS, Element Plus, UI / UX, Design Systems</div>
+                                <div class="skill-line">SVG-визуализация, Конструкторы схем, PDF-генерация</div>
+                                <div class="skill-line">Yandex Maps API, REST API, Postman, Git (Advanced)</div>
+                                <div class="skill-line">Laravel, Inertia.js, PostgreSQL, Docker, Nginx</div>
+                                <div class="skill-line">Oracle PL/SQL, Проектирование БД и бизнес-процессов</div>
+                            </div>
+                        </section>
+                    </div>
+                </aside>
+
+                <section class="content">
+                    <div class="stack">
+
+                        <section class="panel">
+                            <h2 class="section-title section-about">О себе</h2>
+                            <div class="section-card">
+                                <div class="body-copy">
+                                    <p><strong>Senior Frontend Engineer (15+ лет).</strong></p>
+                                    <ul>
+                                        <li>Эксперт в SPA/SSR (Vue 3, Nuxt 3, TypeScript).</li>
+                                        <li>
+                                            Закрываю полный цикл фронтенда с нуля до продакшена: архитектура, модели
+                                            данных, кастомные фреймворки, плагины и UI.
+                                        </li>
+                                        <li>
+                                            Опыт самостоятельного ведения крупных проектов (федеральная логистика,
+                                            e-commerce, бронирование).
+                                        </li>
+                                        <li>
+                                            Имею глубокий бэкграунд в проектировании БД и бизнес-процессов
+                                            (профессионально Oracle PL/SQL в 2010–2023 гг.).
+                                        </li>
+                                        <li>
+                                            Расширяю стек до Fullstack: изучаю Laravel + Inertia.js и плавно подключаюсь
+                                            к бэкенд-задачам.
+                                        </li>
+                                        <li>
+                                            Активно применяю AI (ChatGPT, Copilot) для анализа кода и исследования
+                                            архитектур.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div class="divider"></div>
+
+                        <section class="panel">
+                            <h2 class="section-title section-experience">Опыт работы</h2>
+
+                            <article class="section-card">
+                                <div class="date-row">
+                                    <b>Гром-Ит Софт</b>
+                                    <div class="date-inline">Ноябрь 2023 — н.в.</div>
+                                </div>
+                                <div class="role">Senior Frontend Engineer:</div>
+                                <div class="body-copy">
+                                    <p>
+                                        Разработка и развитие веб-платформ на базе Vue 3, Nuxt 3 и TypeScript. Участие в
+                                        проектировании архитектуры приложений, разработке административных интерфейсов,
+                                        интеграции внешних сервисов и автоматизации бизнес-процессов.
+                                    </p>
+                                    <p><em>Ключевые проекты</em>:</p>
+                                    <ul>
+                                        <li>
+                                            <a href="https://zavidovo.com/" target="_blank" rel="noopener noreferrer"
+                                                >ЗАВИДОВО</a
+                                            >. Крупная цифровая платформа федерального курортного комплекса.
+                                        </li>
+                                        <li>
+                                            <a href="https://offprice.eu/" target="_blank" rel="noopener noreferrer"
+                                                >OFFPRICE</a
+                                            >. Платформа сети fashion-аутлетов.
+                                        </li>
+                                        <li>
+                                            ЗАВОД ГАБИОННЫХ КОНСТРУКЦИЙ. Внутренняя производственная информационная
+                                            система предприятия.
+                                        </li>
+                                        <li>
+                                            <a href="https://oootds.group/" target="_blank" rel="noopener noreferrer"
+                                                >TDS GROUP</a
+                                            >. Корпоративный сайт мебельной компании.
+                                        </li>
+                                    </ul>
+                                    <p><em>Основные достижения</em>:</p>
+                                    <ul>
+                                        <li>
+                                            <strong>Архитектура с нуля:</strong> Спроектировал и реализовал 3 крупных
+                                            проекта на современном стеке (Vue 3 / Nuxt 3); самостоятельно закрываю до
+                                            90% всей разработки.
+                                        </li>
+                                        <li>
+                                            <strong>Инициация миграции:</strong> Выступил инициатором и архитектором
+                                            консолидации устаревших платформ (October CMS и Nuxt 2) в единую экосистему
+                                            на Nuxt 3.
+                                        </li>
+                                        <li>
+                                            <strong>Сложная SVG-инженерия:</strong> Разработал интерактивный
+                                            SVG-конструктор производственных схем (с автоматической раскладкой,
+                                            развертками изделий и генерацией PDF), а также интерактивные SVG-карты
+                                            недвижимости.
+                                        </li>
+                                        <li>
+                                            <strong>Разработка No-Code инструментов:</strong> Создал универсальный
+                                            конструктор динамических страниц, позволивший бизнесу наполнять сайты
+                                            блоками без привлечения разработчиков.
+                                        </li>
+                                        <li>
+                                            <strong>Инфраструктурные модули:</strong> Разработал с нуля модуль штатного
+                                            расписания со сложной бизнес-логикой (многосменность, производственные
+                                            статусы, расчет трудозатрат).
+                                        </li>
+                                        <li>
+                                            <strong>Гео-сервисы и Booking:</strong> Реализовал систему
+                                            онлайн-бронирования отелей/ресторанов и интерактивную карту магазинов на
+                                            Yandex Maps с многоуровневой навигацией.
+                                        </li>
+                                        <li>
+                                            <strong>Масштабируемый UI / Admin-инструменты:</strong> Создал универсальный
+                                            набор компонентов и продвинутую переиспользуемую таблицу (CRUD, роли,
+                                            экспорт, пагинация) для административных интерфейсов.
+                                        </li>
+                                        <li>
+                                            <strong>Интеграции и оптимизация:</strong> Настроил бесшовную интеграцию с
+                                            backend API, авторизацию (Т-Банк, Sanctum, Mindbox), оптимизировал
+                                            производительность сложных интерфейсов и развивал SEO-инфраструктуру.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </article>
+
+                            <article class="section-card">
+                                <div class="date-row">
+                                    <b>Евросеть / Связной</b>
+                                    <div class="date-inline">Ноябрь 2010 — Октябрь 2023</div>
+                                </div>
+                                <div class="role">Инженер-программист БД / Delphi Developer:</div>
+                                <div class="body-copy">
+                                    <p>
+                                        Участие в разработке и развитии ERP/WMS платформы федерального масштаба
+                                        («Связной» / «Евросеть»), обеспечивающей складскую логистику, маршрутизацию
+                                        доставки и учет нескольких тысяч сотрудников по всей стране.
+                                    </p>
+                                    <p><em>Основные достижения:</em></p>
+                                    <ul>
+                                        <li>
+                                            <strong>Проектирование и СУБД:</strong> Самостоятельно проектировал
+                                            структуры данных и разрабатывал сложную бизнес-логику на Oracle PL/SQL,
+                                            включая управление ролями и правами доступа пользователей.
+                                        </li>
+                                        <li>
+                                            <strong>HR-Tech &amp; Автоматизация персонала:</strong> С нуля разработал
+                                            корпоративные системы тестирования, подтверждения квалификации и систему
+                                            наставничества с автоматическим контролем испытательного срока и оценки
+                                            обучения.
+                                        </li>
+                                        <li>
+                                            <strong>Логистика и Финансы:</strong> Создал подсистему управления рабочими
+                                            сменами/доставкой и систему тарифно-экспедиционного обслуживания для расчета
+                                            стоимости логистических операций.
+                                        </li>
+                                        <li>
+                                            <strong>Складские операции (WMS):</strong> Реализовал модули генерации
+                                            PDF-документации, печатных форм и штрихкодирования для транспортных и
+                                            складских процессов; развивал интерфейсы платформы на Delphi XE5.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </article>
+                        </section>
+
+                        <div class="divider"></div>
+
+                        <section class="panel">
+                            <h2 class="section-title section-education">Образование</h2>
+                            <div class="section-card">
+                                <div class="date-row">
+                                    <div class="name-line">
+                                        <b
+                                            >Московский государственный технический университет им. Н.Э. Баумана,
+                                            Москва</b
+                                        >, <span class="date-inline">Высшее</span>
+                                    </div>
+                                    <div class="date-inline">2010</div>
+                                </div>
+                                <div class="body-copy">
+                                    Инженерного бизнеса и менеджмента, Информационные технологии управления в бизнесе
+                                </div>
+                            </div>
+                            <div class="section-card">
+                                <div class="date-row">
+                                    <div class="name-line">
+                                        <b>Московский технологический колледж, г. Москва</b>,
+                                        <span class="date-inline">Среднее спец.</span>
+                                    </div>
+                                    <div class="date-inline">2004</div>
+                                </div>
+                                <div class="body-copy">Экономика, Экономика и бухгалтерский учет</div>
+                            </div>
+                        </section>
+
+                        <div class="divider"></div>
+
+                        <section class="panel">
+                            <h2 class="section-title section-courses">Курсы</h2>
+                            <div class="section-card">
+                                <div class="date-row">
+                                    <b class="org">ЧОУ ДПО "Образовательные технологии "Скилбокс"</b>
+                                    <div class="date-inline">2023</div>
+                                </div>
+                                <div class="body-copy">Разработчик Web и мультимедийных приложений</div>
+                            </div>
+                            <div class="section-card">
+                                <div class="date-row">
+                                    <b class="org">ЦКО "Специалист" при МГТУ им. Н.Э. Баумана</b>
+                                    <div class="date-inline">2013</div>
+                                </div>
+                                <div class="body-copy">
+                                    Oracle 11g: Основы администрирования и передовые методы PL/SQL Oracle 11g
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </main>
         </div>
-    </main>
-    <template id="footer"></template>
-</body>
-
+    </body>
 </html>
