@@ -505,6 +505,30 @@
                 .content {
                     padding: 18px 16px 20px;
                 }
+
+                .content ul {
+                    padding-left: 4px;
+                    list-style: none;
+                }
+
+                .content li {
+                    position: relative;
+                    padding-left: 14px;
+                }
+
+                .content li::marker {
+                    content: "";
+                }
+
+                .content li::before {
+                    content: "▪";
+                    position: absolute;
+                    left: 0;
+                    top: 0.1em;
+                    /* color: #2072be; */
+                    font-size: 0.85em;
+                    line-height: 1;
+                }
             }
 
             @media print {
