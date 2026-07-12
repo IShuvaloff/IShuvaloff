@@ -82,7 +82,7 @@
                 display: grid;
                 grid-template-columns: 315px minmax(0, 1fr);
                 align-items: stretch;
-                overflow: hidden;
+                overflow-y: hidden;
                 border-radius: 24px;
                 background: var(--sheet-bg);
                 border: 1px solid var(--sheet-border);
@@ -529,6 +529,23 @@
                 text-underline-offset: 2px;
                 color: #2072be;
             }
+            blockquote {
+                margin-left: 5px;
+                padding: 0;
+                padding-left: 11px;
+                border-left: 2px solid #2072be;
+            }
+            ul {
+                padding-left: 8px;
+            }
+            li {
+                padding-left: 10px;
+            }
+            li::marker {
+                content: "▪";
+                /* color: #2072be; */
+                font-size: 0.85em;
+            }
         </style>
     </head>
     <body>
@@ -546,8 +563,9 @@
                             <div class="name-block">
                                 <h1 class="name">Шувалов Илья</h1>
                                 <div class="position">
-                                    Senior Frontend Engineer<br />(Vue.js /
-                                    Nuxt.js)
+                                    Senior Frontend Engineer<br />Vue.js /
+                                    Nuxt.js<br />
+                                    Enterprise Systems
                                 </div>
                                 <div class="marker city">
                                     <span class="icon">Москва</span>
@@ -685,13 +703,15 @@
                                 <div class="body-copy">
                                     <p>
                                         <strong
-                                            >Senior Frontend Engineer (15+
-                                            лет).</strong
+                                            >Senior Frontend Engineer с опытом
+                                            проектирования enterprise-систем
+                                            (15+ лет).</strong
                                         >
                                     </p>
                                     <ul>
                                         <li>
-                                            Эксперт в SPA/SSR (Vue 3, Nuxt 3,
+                                            Специализируюсь на разработке
+                                            SPA/SSR-приложений (Vue 3, Nuxt 3,
                                             TypeScript).
                                         </li>
                                         <li>
@@ -718,11 +738,19 @@
                                             подключаюсь к бэкенд-задачам.
                                         </li>
                                         <li>
-                                            Активно применяю AI (ChatGPT,
-                                            Copilot) для анализа кода и
-                                            исследования архитектур.
+                                            Использую современные AI-инструменты
+                                            для анализа кода и исследования
+                                            архитектур.
                                         </li>
                                     </ul>
+                                    <blockquote>
+                                        При проектировании новой
+                                        функциональности сначала моделирую
+                                        предметную область, определяю связи
+                                        между сущностями и возможные точки
+                                        масштабирования, после чего перехожу к
+                                        реализации.
+                                    </blockquote>
                                 </div>
                             </div>
                         </section>
@@ -796,8 +824,9 @@
                                             <strong>Архитектура с нуля:</strong>
                                             Спроектировал и реализовал 3 крупных
                                             проекта на современном стеке (Vue 3
-                                            / Nuxt 3); самостоятельно закрываю
-                                            до 90% всей разработки.
+                                            / Nuxt 3); самостоятельно веду
+                                            большую часть frontend-разработки
+                                            проекта.
                                         </li>
                                         <li>
                                             <strong>Инициация миграции:</strong>
@@ -878,7 +907,7 @@
                                 <div class="date-row">
                                     <b>Евросеть / Связной</b>
                                     <div class="date-inline">
-                                        Ноябрь 2010 — Октябрь 2023
+                                        Нояб. 2010 — Окт. 2023
                                     </div>
                                 </div>
                                 <div class="role">
